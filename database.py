@@ -1,5 +1,5 @@
 import sqlite3
-conn = sqlite3.connect("C:\\Users\\Judy Abusteit\\MixSafe\\reactions.db")
+conn = sqlite3.connect("C:\\Users\\Judy Abusteit\\Projects\\MixSafe\\reactions.db")
 cur = conn.cursor()
 
 cur.execute('''
@@ -102,7 +102,7 @@ reactions= [
     ('Sodium hypochlorite', 'Polyethylene compounds', 'Polyethylene oxide'),
     ('Sodium hypochlorite', 'Acetic acid', 'Acetic acid vapors'),
     ('Sodium hypochlorite', 'Sodium compounds', 'Sodium oxide'),
-    ('Sodium hypochlorite', 'Chlorine dioxide', 'Chlorine dioxide gas')
+    ('Sodium hypochlorite', 'Chlorine dioxide', 'Chlorine dioxide gas'),
 
     ('Hydrogen peroxide', 'Ammonia', 'Ammonium hydroxide'),
     ('Hydrogen peroxide', 'Chlorine bleach', 'Chlorine gas'),
@@ -131,8 +131,7 @@ reactions= [
     ('Hydrogen peroxide', 'Sodium percarbonate', 'Carbon dioxide'),
     ('Hydrogen peroxide', 'Alcohol ethoxylates', 'Aldehydes'),
     ('Hydrogen peroxide', 'Sodium lauryl sulfate', 'Sulfur compounds'),
-    ('Hydrogen peroxide', 'Cocamidopropyl betaine', 'Sulfur compounds')
-    
+    ('Hydrogen peroxide', 'Cocamidopropyl betaine', 'Sulfur compounds'),
     ('Ammonia', 'Chlorine', 'Chloramine'),
     ('Ammonia', 'Bleach', 'Chloramine gas'),
     ('Ammonia', 'Sodium hypochlorite', 'Chloramine gas'),
@@ -175,7 +174,7 @@ reactions= [
     ('Ammonia', 'Aluminum sulfate', 'Ammonium aluminum sulfate'),
     ('Ammonia', 'Sodium chlorite', 'Ammonium chlorite'),
     ('Ammonia', 'Hydrogen peroxide', 'Ammonium peroxide'),
-    ('Ammonia', 'Sodium hypochlorite', 'Ammonium hypochlorite')
+    ('Ammonia', 'Sodium hypochlorite', 'Ammonium hypochlorite'),
 
     ('Isopropyl alcohol', 'Ammonia', 'Isopropylamine'),
     ('Isopropyl alcohol', 'Sodium hypochlorite', 'Isopropyl hypochlorite'),
@@ -211,7 +210,7 @@ reactions= [
     ('Isopropyl alcohol', 'Chloroform', 'Isopropyl chloroformate'),
     ('Isopropyl alcohol', 'Sodium thiosulfate', 'Isopropyl thiosulfate'),
     ('Isopropyl alcohol', 'Acetic acid', 'Isopropyl acetate'),
-    ('Isopropyl alcohol', 'Ammonium chloride', 'Isopropyl ammonium')
+    ('Isopropyl alcohol', 'Ammonium chloride', 'Isopropyl ammonium'),
 
     ('Ethyl alcohol', 'Ammonia', 'Ethylamine'),
     ('Ethyl alcohol', 'Sodium hypochlorite', 'Ethyl hypochlorite'),
@@ -249,7 +248,7 @@ reactions= [
     ('Ethyl alcohol', 'Chloroform', 'Ethyl chloroformate'),
     ('Ethyl alcohol', 'Sodium thiosulfate', 'Ethyl thiosulfate'),
     ('Ethyl alcohol', 'Acetic acid', 'Ethyl acetate'),
-    ('Ethyl alcohol', 'Ammonium chloride', 'Ethyl ammonium')
+    ('Ethyl alcohol', 'Ammonium chloride', 'Ethyl ammonium'),
 
     ('Citric Acid', 'Sodium Hypochlorite (Bleach)', 'Chlorine Gas'),
     ('Citric Acid', 'Ammonia', 'Ammonium Citrate'),
@@ -299,7 +298,7 @@ reactions= [
     ('Citric Acid', 'Sodium Hypophosphite', 'Phosphorous Acid'),
     ('Citric Acid', 'Sodium Polyphosphate', 'Sodium Citrate'),
     ('Citric Acid', 'Sodium Fluoride', 'Hydrofluoric Acid'),
-    ('Citric Acid', 'Sodium Hexametaphosphate', 'Sodium Citrate')
+    ('Citric Acid', 'Sodium Hexametaphosphate', 'Sodium Citrate'),
 
     ('Sodium Hypochlorite', 'Ammonia', 'Chloramine Gas'),
     ('Sodium Hypochlorite', 'Acetic Acid', 'Chlorine Gas'),
@@ -311,7 +310,7 @@ reactions= [
     ('Ammonia', 'Isopropyl Alcohol', 'Acetamide'),
     ('Ammonia', 'Acetone', 'Acetonitrile'),
     ('Acetic Acid', 'Hydrogen Peroxide', 'Peracetic Acid'),
-    ('Sodium Hypochlorite', 'Acetone', 'Trichloroethylene')
+    ('Sodium Hypochlorite', 'Acetone', 'Trichloroethylene'),
     ('a','b','test')
  ]
 

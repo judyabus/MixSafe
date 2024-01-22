@@ -35,30 +35,27 @@ def results():
         if Product2Text:
             Product2 = Product2Text.split(',')
         elif Product2Image:
+
             Product2 = ImageExtractor(Product2Image)
 
-        # Connect to the database
-        conn = sqlite3.connect("C:\Users\Judy Abusteit\MixSafe\MixSafe\reactions.db", check_same_thread=False)
-        cur = conn.cursor()
+        with sqlite3.connect(r"C:\Users\Judy Abusteit\Projects\MixSafe\reactions.db", check_same_thread=False) as conn:
+            cur = conn.cursor()
 
-        reactions = []
+            reactions = []
 
-        for ingredient1 in Product1:
-            for ingredient2 in Product2:
-                cur.execute('''
-                    SELECT reaction
-                    FROM products
-                    WHERE (product1 = ? AND product2 = ?) OR (product1 = ? AND product2 = ?)
-                ''', (ingredient1, ingredient2, ingredient2, ingredient1))
+            for ingredient1 in Product1:
+                for ingredient2 in Product2:
+                    cur.execute('''
+                        SELECT reaction
+                        FROM reactions
+                        WHERE (product1 = ? AND product2 = ?) OR (product1 = ? AND product2 = ?)
+                    ''', (ingredient1, ingredient2, ingredient2, ingredient1))
 
-                result = cur.fetchone()
+                    result = cur.fetchone()
 
-                if result:
-                    reactions.append(result[0])
-
-        cur.close()
-        conn.close()
-
+                    if result:
+                        reactions.append(result[0])
+            cur.close()
         return render_template('results.html', reactions=reactions, Product1=Product1, Product2=Product2)
     return render_template('data.html')
 
