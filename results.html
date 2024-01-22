@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Product Comparison Results</title>
+</head>
+<body>
+    <p>Product Comparison Results</p>
+    <h1>Product 1</h1>
+    <ul>
+        {% for ingredient in Product1 %}
+            <li>{{ ingredient }}</li>
+        {% endfor %}
+    </ul>
+    <h1>Product 2</h1>
+    <ul>
+        {% for ingredient in Product2 %}
+            <li>{{ ingredient }}</li>
+        {% endfor %}
+    </ul>
+
+    <h1>Reaction</h1>
+    <ul>
+        {% for reaction in reactions %}
+            <li>{{ reaction }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
