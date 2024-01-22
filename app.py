@@ -38,7 +38,7 @@ def results():
 
             Product2 = ImageExtractor(Product2Image)
 
-        with sqlite3.connect(r"C:\Users\Judy Abusteit\Projects\MixSafe\reactions.db", check_same_thread=False) as conn:
+        with sqlite3.connect("C:\\Users\\Judy Abusteit\\Projects\\MixSafe\\reactions.db", check_same_thread=False) as conn:
             cur = conn.cursor()
 
             reactions = []
