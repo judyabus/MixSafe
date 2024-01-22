@@ -41,6 +41,8 @@ def results():
 
         with sqlite3.connect("C:\\Users\\Judy Abusteit\\Projects\\MixSafe\\reactions.db", check_same_thread=False) as conn:
             cur = conn.cursor()
+            Product1 = [ingredient.strip() for ingredient in Product1]
+            Product2 = [ingredient.strip() for ingredient in Product2]
 
             reactions = []
 
@@ -53,9 +55,12 @@ def results():
                     ''', (ingredient1, ingredient2, ingredient2, ingredient1))
 
                     result = cur.fetchone()
+            if result:
+                reactions.append(result[0])
+            else:
+                # If no reaction found, you can decide what to do. For example, add a placeholder value.
+                reactions.append("No reaction found for ({}, {})".format(ingredient1,ingredient2))
 
-                    if result:
-                        reactions.append(result[0])
             cur.close()
 
         return render_template('results.html', reactions=reactions, Product1=Product1, Product2=Product2)
