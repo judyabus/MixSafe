@@ -37,9 +37,16 @@ def results():
         elif Product2Image:
 
             Product2 = ImageExtractor(Product2Image)
+        else:
+            return 'Please enter image or text for Product 2'
 
         with sqlite3.connect("C:\\Users\\Judy Abusteit\\Projects\\MixSafe\\reactions.db", check_same_thread=False) as conn:
             cur = conn.cursor()
+<<<<<<< HEAD
+=======
+            Product1 = [ingredient.strip() for ingredient in Product1]
+            Product2 = [ingredient.strip() for ingredient in Product2]
+>>>>>>> 8de9d823dd04aa939d24c554fe54b852326c2ba7
 
             reactions = []
 
@@ -52,6 +59,16 @@ def results():
                     ''', (ingredient1, ingredient2, ingredient2, ingredient1))
 
                     result = cur.fetchone()
+<<<<<<< HEAD
+=======
+            if result:
+                reactions.append(result[0])
+            else:
+                # If no reaction found, you can decide what to do. For example, add a placeholder value.
+                reactions.append("No reaction found for ({}, {})".format(ingredient1,ingredient2))
+
+            cur.close()
+>>>>>>> 8de9d823dd04aa939d24c554fe54b852326c2ba7
 
                     if result:
                         reactions.append(result[0])

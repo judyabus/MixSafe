@@ -3,7 +3,7 @@ conn = sqlite3.connect("C:\\Users\\Judy Abusteit\\Projects\\MixSafe\\reactions.d
 cur = conn.cursor()
 
 cur.execute('''
-    CREATE TABLE IF NOT EXISTS products (
+    CREATE TABLE IF NOT EXISTS reactions (
         product1 TEXT,
         product2 TEXT,
         reaction TEXT
@@ -314,12 +314,13 @@ reactions= [
     ('a','b','test')
  ]
 
-cur.executemany('''INSERT INTO products (product1, product2, reaction) VALUES (?, ?, ?)''', reactions)
+cur.executemany('''INSERT INTO reactions (product1, product2, reaction) VALUES (?, ?, ?)''', reactions)
 
 conn.commit()
 cur.close()
 conn.close()
 
+# CHEMICALS LEFT TO RESEARCH
 # Sodium Hypochlorite
 # Ammonia
 # Isopropyl Alcohol
