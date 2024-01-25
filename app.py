@@ -8,7 +8,10 @@ app = Flask(__name__)
 reader = easyocr.Reader(['en'])
 
 def ImageExtractor(image):
-    image = Image.open(io.BytesIO(image.read()))
+    if isinstance(image, str): 
+        image = Image.open(image)
+    else:  
+        image = Image.open(io.BytesIO(image.read()))
     result = reader.readtext(image)
     fulltext = ''
     for (_, text, _) in result:
@@ -28,14 +31,14 @@ def results():
         if Product1Text:
             Product1 = Product1Text.split(',')
         elif Product1Image:
-            Product1 = ImageExtractor(Product1Image)
+            Product1 = ImageExtractor(Product1Image).split(',') 
         else:
             return 'Please enter image or text for Product 1'
 
         if Product2Text:
             Product2 = Product2Text.split(',')
         elif Product2Image:
-            Product2 = ImageExtractor(Product2Image)
+            Product2 = ImageExtractor(Product2Image).split(',')  
         else:
             return 'Please enter image or text for Product 2'
 
@@ -43,9 +46,7 @@ def results():
             cur = conn.cursor()
             Product1 = [ingredient.strip() for ingredient in Product1]
             Product2 = [ingredient.strip() for ingredient in Product2]
-
             reactions = []
-
             for ingredient1 in Product1:
                 for ingredient2 in Product2:
                     cur.execute('''
@@ -55,15 +56,15 @@ def results():
                     ''', (ingredient1, ingredient2, ingredient2, ingredient1))
 
                     result = cur.fetchone()
-            if result:
-                reactions.append(result[0])
-            else:
-                # If no reaction found, you can decide what to do. For example, add a placeholder value.
-                reactions.append("No reaction found for ({}, {})".format(ingredient1,ingredient2))
+
+                    if result:
+                        reactions.append(result[0])
+            if reactions:
+                cur.close()
+                return render_template('results.html', reactions=reactions, Product1=Product1, Product2=Product2)
 
             cur.close()
 
-        return render_template('results.html', reactions=reactions, Product1=Product1, Product2=Product2)
     return render_template('data.html')
 
 if __name__ == "__main__":
