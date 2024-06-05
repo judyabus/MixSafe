@@ -3,20 +3,11 @@ import easyocr
 import io
 from PIL import Image
 import sqlite3
+import os
 
 app = Flask(__name__, static_folder='static')
 reader = easyocr.Reader(['en'])
 
-def ImageExtractor(image):
-    if isinstance(image, str): 
-        image = Image.open(image)
-    else:  
-        image = Image.open(io.BytesIO(image.read()))
-    result = reader.readtext(image)
-    fulltext = ''
-    for (_, text, _) in result:
-        fulltext += text + ' '
-    return fulltext.strip()
 
 @app.route('/', methods=['GET'])
 def home():
@@ -33,22 +24,17 @@ def results():
         Product2 = None
         Product1Text = request.form.get('Product1Text')
         Product2Text = request.form.get('Product2Text')
-        Product1Image = request.files.get('Product1Image')
-        Product2Image = request.files.get('Product2Image')
+
 
         if Product1Text:
             Product1 = Product1Text.split(',')
-        elif Product1Image:
-            Product1 = ImageExtractor(Product1Image).split(',') 
         else:
             return 'Please enter image or text for Product 1'
 
         if Product2Text:
             Product2 = Product2Text.split(',')
-        elif Product2Image:
-            Product2 = ImageExtractor(Product2Image).split(',')  
         else:
-            return 'Please enter image or text for Product 2'
+            return 'Please enter text for Product 2'
 
         with sqlite3.connect("C:\\Users\\Judy Abusteit\\Projects\\MixSafe\\reactions.db", check_same_thread=False) as conn:
             cur = conn.cursor()
@@ -76,4 +62,5 @@ def results():
     return render_template('data.html')
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
