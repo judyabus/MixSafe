@@ -8,7 +8,6 @@ import os
 app = Flask(__name__, static_folder='static')
 reader = easyocr.Reader(['en'])
 
-
 @app.route('/', methods=['GET'])
 def home():
     return render_template('index.html')
@@ -25,18 +24,17 @@ def results():
         Product1Text = request.form.get('Product1Text')
         Product2Text = request.form.get('Product2Text')
 
-
         if Product1Text:
             Product1 = Product1Text.split(',')
         else:
-            return 'Please enter image or text for Product 1'
+            return 'Please enter text for Product 1'
 
         if Product2Text:
             Product2 = Product2Text.split(',')
         else:
             return 'Please enter text for Product 2'
 
-        with sqlite3.connect("C:\\Users\\Judy Abusteit\\Projects\\MixSafe\\reactions.db", check_same_thread=False) as conn:
+        with sqlite3.connect("reactions.db", check_same_thread=False) as conn:
             cur = conn.cursor()
             Product1 = [ingredient.strip() for ingredient in Product1]
             Product2 = [ingredient.strip() for ingredient in Product2]
@@ -63,4 +61,3 @@ def results():
 
 if __name__ == "__main__":
     app.run(debug=False)
-
