@@ -4,7 +4,7 @@ import io
 from PIL import Image
 import sqlite3
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 reader = easyocr.Reader(['en'])
 
 def ImageExtractor(image):
@@ -18,7 +18,15 @@ def ImageExtractor(image):
         fulltext += text + ' '
     return fulltext.strip()
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
+def home():
+    return render_template('home.html')
+
+@app.route('/data')
+def data():
+    return render_template('data.html')
+
+@app.route('/', methods=['POST'])
 def results():
     if request.method == 'POST':
         Product1 = None
